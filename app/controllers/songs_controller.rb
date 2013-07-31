@@ -1,4 +1,6 @@
 class SongsController < ApplicationController
+
+  before_filter :authenticate_user!, except: [:index]
   # GET /songs
   # GET /songs.json
   def index
@@ -24,7 +26,7 @@ class SongsController < ApplicationController
   # GET /songs/new
   # GET /songs/new.json
   def new
-    @song = Song.new
+    @song = current_user.songs.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +36,13 @@ class SongsController < ApplicationController
 
   # GET /songs/1/edit
   def edit
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id])
   end
 
   # POST /songs
   # POST /songs.json
   def create
-    @song = Song.new(params[:song])
+    @song = current_user.songs.new(params[:song])
 
     respond_to do |format|
       if @song.save
@@ -56,7 +58,7 @@ class SongsController < ApplicationController
   # PUT /songs/1
   # PUT /songs/1.json
   def update
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id])
 
     respond_to do |format|
       if @song.update_attributes(params[:song])
@@ -72,7 +74,7 @@ class SongsController < ApplicationController
   # DELETE /songs/1
   # DELETE /songs/1.json
   def destroy
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id])
     @song.destroy
 
     respond_to do |format|

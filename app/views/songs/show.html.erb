@@ -19,7 +19,12 @@
   <b>Genre:</b>
   <%= @song.genre %>
 </p>
+<small>
+	Uploaded by: <%= @song.user.username %>
+</small><br />
 
+<% if current_user == @song.user %>
+	<%= link_to 'Edit', edit_song_path(@song) %> |
+<% end %>
+	<%= link_to 'Back', songs_path %>
 
-<%= link_to 'Edit', edit_song_path(@song) %> |
-<%= link_to 'Back', songs_path %>

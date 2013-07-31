@@ -11,20 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130731030910) do
+ActiveRecord::Schema.define(:version => 20130731194104) do
 
   create_table "songs", :force => true do |t|
     t.string   "artist"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.string   "mp3_file_name"
-    t.string   "mp3_content_type"
-    t.integer  "mp3_file_size"
-    t.datetime "mp3_updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "genre"
+    t.integer  "user_id"
   end
+
+  add_index "songs", ["user_id"], :name => "index_songs_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -39,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130731030910) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
