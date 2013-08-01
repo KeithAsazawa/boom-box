@@ -19,6 +19,9 @@
   <b>Genre:</b>
   <%= @song.genre %>
 </p>
+<p>
+  <%= link_to "Download", @song.mp3.url(:original, false) %>
+</p>
 <small>
 	Uploaded by: <%= @song.user.username %>
 </small><br />

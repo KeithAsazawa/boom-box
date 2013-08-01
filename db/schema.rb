@@ -11,16 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130731194104) do
+ActiveRecord::Schema.define(:version => 20130731212330) do
 
   create_table "songs", :force => true do |t|
     t.string   "artist"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "genre"
     t.integer  "user_id"
+    t.string   "mp3_file_name"
+    t.string   "mp3_content_type"
+    t.integer  "mp3_file_size"
+    t.datetime "mp3_updated_at"
   end
 
   add_index "songs", ["user_id"], :name => "index_songs_on_user_id"
